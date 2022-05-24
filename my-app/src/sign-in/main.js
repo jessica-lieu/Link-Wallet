@@ -2,11 +2,19 @@ const serverUrl = "https://hr43a6esr4uz.usemoralis.com:2053/server";
 const appId = "is22QzmZcFDkWnf2YAOXqLsoSdt62ODzPGeLTUv4";
 Moralis.start({ serverUrl, appId });
 
+<<<<<<< HEAD
 let homepage = "http://127.0.0.1:5500/index.html";
 if (Moralis.User.current() == null && window.location.href != homepage) {
     document.querySelector('body').style.display = 'none';
     window.location.href = "index.html";
 }
+=======
+// let homepage = "http://127.0.0.1:5500/index.html";
+// if(Moralis.User.current() == null && window.location.href != homepage){
+//     document.querySelector('body').style.display = 'none';
+//     window.location.href = "index.html";
+// }
+>>>>>>> d3ffbd7145277c0842cf57db8a6d01bbff106b41
 
 login = async () => {
     await Moralis.authenticate().then(async function (user) {
@@ -74,6 +82,7 @@ getTransactions = async () => {
     }
 }
 
+<<<<<<< HEAD
 getMarket = async () => {
     console.log("get market clicked")
 }
@@ -97,6 +106,11 @@ millisecondsToTime = (ms) => {
 };
 
 if (document.querySelector("#btn-login") != null) {
+=======
+
+
+if(document.querySelector("#btn-login") != null){
+>>>>>>> d3ffbd7145277c0842cf57db8a6d01bbff106b41
     document.querySelector("#btn-login").onclick = login;
 }
 if (document.querySelector("#btn-logout") != null) {

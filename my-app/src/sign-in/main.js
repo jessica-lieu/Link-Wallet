@@ -40,6 +40,14 @@ getTransactions = async () => {
       console.log(transactions);
 }
 
+getMarket = async () => {
+    console.log("get market clicked")
+}
+
+getNFT = async () => {
+    console.log("get NFT clicked")
+}
+
 if(document.querySelector("#btn-login") != null){
     document.querySelector("#btn-login").onclick = login;
 }
@@ -52,8 +60,11 @@ if(document.querySelector("#get-balances-link") != null){
 if(document.querySelector("#get-transactions-link") != null){
     document.querySelector("#get-transactions-link").onclick = getTransactions;
 }
-
-//get-market-link
-//get-NFT-link
+if(document.querySelector("#get-market-link") != null){
+    document.querySelector("#get-market-link").onclick = getMarket;
+}
+if(document.querySelector("#get-NFT-link") != null){
+    document.querySelector("#get-NFT-link").onclick = getNFT;
+}
 
 

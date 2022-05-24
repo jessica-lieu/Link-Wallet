@@ -2,21 +2,13 @@ const serverUrl = "https://hr43a6esr4uz.usemoralis.com:2053/server";
 const appId = "is22QzmZcFDkWnf2YAOXqLsoSdt62ODzPGeLTUv4";
 Moralis.start({ serverUrl, appId });
 
-<<<<<<< HEAD
 let homepage = "http://127.0.0.1:5500/index.html";
 if (Moralis.User.current() == null && window.location.href != homepage) {
     document.querySelector('body').style.display = 'none';
     window.location.href = "index.html";
 }
-=======
-// let homepage = "http://127.0.0.1:5500/index.html";
-// if(Moralis.User.current() == null && window.location.href != homepage){
-//     document.querySelector('body').style.display = 'none';
-//     window.location.href = "index.html";
-// }
->>>>>>> d3ffbd7145277c0842cf57db8a6d01bbff106b41
 
-login = async () => {
+login = async ()=>{
     await Moralis.authenticate().then(async function (user) {
         console.log('Logged In');
         user.set("name", document.getElementById('user-username').value);
@@ -26,10 +18,10 @@ login = async () => {
     })
 }
 
-logout = async () => {
+logout = async ()=>{
     await Moralis.User.logOut();
-    console.log('Logged Out');
-    window.location.href = "index.html";
+        console.log('Logged Out');
+        window.location.href = "index.html";
 }
 
 getBalances = async () => {
@@ -43,11 +35,11 @@ getTransactions = async () => {
         address: "0xcb47540de6771f9a8fAc460F6362d5591897D3ea",
         order: "desc",
         from_block: "0",
-    };
-    const transactions = await Moralis.Web3API.account.getTransactions(options);
-    console.log(transactions);
+      };
+      const transactions = await Moralis.Web3API.account.getTransactions(options);
+      console.log(transactions);
 
-    if (transactions.total > 0) {
+      if (transactions.total > 0) {
         let table = `
             <table class="table">
             <thead>
@@ -82,7 +74,6 @@ getTransactions = async () => {
     }
 }
 
-<<<<<<< HEAD
 getMarket = async () => {
     console.log("get market clicked")
 }
@@ -106,20 +97,15 @@ millisecondsToTime = (ms) => {
 };
 
 if (document.querySelector("#btn-login") != null) {
-=======
-
-
-if(document.querySelector("#btn-login") != null){
->>>>>>> d3ffbd7145277c0842cf57db8a6d01bbff106b41
     document.querySelector("#btn-login").onclick = login;
 }
-if (document.querySelector("#btn-logout") != null) {
+if(document.querySelector("#btn-logout") != null){
     document.querySelector("#btn-logout").onclick = logout;
 }
-if (document.querySelector("#get-balances-link") != null) {
+if(document.querySelector("#get-balances-link") != null){
     document.querySelector("#get-balances-link").onclick = getBalances;
 }
-if (document.querySelector("#get-transactions-link") != null) {
+if(document.querySelector("#get-transactions-link") != null){
     document.querySelector("#get-transactions-link").onclick = getTransactions;
 }
 if (document.querySelector("#get-market-link") != null) {
@@ -128,3 +114,6 @@ if (document.querySelector("#get-market-link") != null) {
 if (document.querySelector("#get-NFT-link") != null) {
     document.querySelector("#get-NFT-link").onclick = getNFT;
 }
+
+
+

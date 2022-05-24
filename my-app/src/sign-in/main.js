@@ -2,11 +2,11 @@ const serverUrl = "https://hr43a6esr4uz.usemoralis.com:2053/server";
 const appId = "is22QzmZcFDkWnf2YAOXqLsoSdt62ODzPGeLTUv4";
 Moralis.start({ serverUrl, appId });
 
-let homepage = "http://127.0.0.1:5500/index.html";
-if(Moralis.User.current() == null && window.location.href != homepage){
-    document.querySelector('body').style.display = 'none';
-    window.location.href = "index.html";
-}
+// let homepage = "http://127.0.0.1:5500/index.html";
+// if(Moralis.User.current() == null && window.location.href != homepage){
+//     document.querySelector('body').style.display = 'none';
+//     window.location.href = "index.html";
+// }
 
 login = async ()=>{
     await Moralis.authenticate().then(async function (user) {
@@ -40,6 +40,28 @@ getTransactions = async () => {
       console.log(transactions);
 }
 
+getNFTs = async () => {
+    console.log("getnft clicked")
+    let nfts = await Moralis.Web3API.account.getNFTs({chain: 'rinkeby', address:'0x9056a967957d65E3070D59988C0D8A671C5B72Aa'});
+    let tableOfNFTs = document.querySelector('#tableofNFTs');
+    if(nfts.result.length > 0){
+        nfts.result.forEach(n => {
+        let metadata = JSON.parse(n.metadata);
+        let content = `
+        <div class="card col-md-3">
+        <img src="${fixURL(metadata.image_url)}" class="card-img-top" height=300>
+            <div class="card-body">
+                <h5 class="card-title">${metadata.name}</h5>
+                <p class="card-text">${metadata.description}</p>
+            </div>
+        </div>`
+
+        tableOfNFTs.innerHTML += content;
+        })
+    }
+    window.location.href = "nftmarket.html"
+}
+
 if(document.querySelector("#btn-login") != null){
     document.querySelector("#btn-login").onclick = login;
 }
@@ -52,7 +74,9 @@ if(document.querySelector("#get-balances-link") != null){
 if(document.querySelector("#get-transactions-link") != null){
     document.querySelector("#get-transactions-link").onclick = getTransactions;
 }
-
+if(document.querySelector("#get-NFT-link") != null){
+    document.querySelector("#get-NFT-link").onclick = getNFTs;
+}
 //get-market-link
 //get-NFT-link
 

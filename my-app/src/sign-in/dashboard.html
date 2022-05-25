@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.88.1">
-  <title>The Dashboard</title>
+  <title>NFT Wallet - The Dashboard</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/dashboard/">
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -17,96 +17,98 @@
   <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
   <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400&display=swap" rel="stylesheet"> 
+
 </head>
 
 <body>
-
-  <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Link Wallet</a>
+  <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="dashboard.html"></style>Link Wallet</a>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
       data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <div class="navbar-nav">
       <div class="nav-item text-nowrap">
-        <a id="btn-logout" class="nav-link px-3" href="#">Sign out</a>
+        <a id="btn-logout" class="nav-link px-3" href="index.html">Sign out</a>
       </div>
     </div>
   </header>
 
-  <div class="container-fluid">
-    <div class="row">
-      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-        <div class="position-sticky pt-3">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a id="get-dashboard-link" class="nav-link active" aria-current="page" href="#">
-                <span data-feather="home"></span>
-                Dashboard
-              </a>
-            <li class="nav-item">
-              <a id="get-balances-link" class="nav-link" aria-current="page" href="balances.html">
-                <span data-feather="dollar-sign"></span>
-                Balances
-              </a>
-            </li>
-            <li class="nav-item">
-              <a id="get-transactions-link" class="nav-link" href="transactions.html">
-                <span data-feather="file"></span>
-                Transactions
-              </a>
-            </li>
-            <li class="nav-item">
-              <a id="get-market-link" class="nav-link" href="markettrends.html">
-                <span data-feather="trending-up"></span>
-                Market Trends
-              </a>
-            </li>
-            <li class="nav-item">
-              <a id="get-NFT-link" class="nav-link" href="nftmarket.html">
-                <span data-feather="shopping-bag"></span>
-                NFT Minter
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+  <main style="font-family: 'Source Sans Pro', sans-serif; color: #F0EFF4;">
 
-      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <div
-          class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">Dashboard</h1>
-        </div>
-
-        <h3>Hello! :D</h3> Come join us as we slowly lose our minds while working on this project.
-        As the web designer, I'm losing my mind because live server is not working so I can't even see what
-        the website looks like without looking at another person's laptop so REEEEEEE :^))
-        <p></p>
-        This is suppose to be an introductory thing or like a README to the website where we would display information
-        about our website but to be honest, I'm trying to think on how to display information without utilizing the
-        other button mechanics thing idk. It's been a hot minute since I have used HTML so everything is gonna come
-        from Google. I'm gonna insert a line break just to see how it works
-        <br>
-        <h1 style="color:blue; text-align: center;">Heading 1</h1>
-        <h2 style="color:rgb(123, 123, 203); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Heading 2
-        </h2>
-        <h3 style="color:rgb(174, 90, 182);">Heading 3</h3>
-        <h4 style="color:rgb(0, 255, 195);">Heading 4</h4>
-        <h5 style="color:rgb(213, 234, 185);">Heading 5</h5>
-        <h6 style="color:rgb(255, 85, 0);">Heading 6</h6>
-
-        <p>
-          <img
-            src="https://media.wired.co.uk/photos/60c8730fa81eb7f50b44037e/3:2/w_3329,h_2219,c_limit/1521-WIRED-Cat.jpeg"
-            width="500" height="600">
-        </p>
-
-      </main>
+    <div class="px-4 py-5 my-5 text-center">
+      <img class="d-block mx-auto mb-4" src="Crypto Logo.png" alt="" width="72" height="57">
+      <h1 class="display-5 fw-bold">Welcome to Link Wallet!</h1>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+      </div>
     </div>
-  </div>
+      
+    <div class="container px-4 py-5" id="hanging-icons">
+      <h2 class="pb-2 border-bottom">Explore Your Wallet</h2>
+      <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        <div class="col d-flex align-items-start">
+          <div class="icon-square bg-light text-dark d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+            <span data-feather="dollar-sign"></span>
+          </div>
+          <div>
+            <h2>See your Balance</h2>
+            <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+            <a href="balances.html" class="btn btn-primary">
+              Go to Balances
+            </a>
+          </div>
+        </div>
+        <div class="col d-flex align-items-start">
+          <div class="icon-square bg-light text-dark d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+            <span data-feather="file"></span>
+          </div>
+          <div>
+            <h2>Look at your Transactions</h2>
+            <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+            <a href="transactions.html" class="btn btn-primary">
+              Go to Transactions
+            </a>
+          </div>
+        </div>
+        <div class="col d-flex align-items-start">
+          <div class="icon-square bg-light text-dark d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+            <span data-feather="trending-up"></span>
+          </div>
+          <div>
+            <h2>Peek at Market Trends</h2>
+            <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+            <a href="markettrends.html" class="btn btn-primary">
+              Go to Market Trends
+            </a>
+          </div>
+        </div>
+      </div>
+      </div>
 
+      <div class="container my-5">
+        <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+            <div class="row flex-lg-row-reverse align-items-center py-5">
+              <div class="col-10 col-sm-8 col-lg-6">
+                <img src="https://images.unsplash.com/photo-1643101809652-ef56a14818ec?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170" class="d-block mx-lg-auto img-fluid" alt="Photo by Tezos" width="700" height="500" loading="lazy">
+              </div>
+              <div class="col-lg-6">
+                <h1 class="display-5 fw-bold lh-1 mb-3">Create Your Own NFTS!</h1>
+                <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                  <a type="button" class="btn btn-primary btn-lg px-4 me-md-2" href = "nftmarket.html">Start Minting</a>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
 
+    </main>
+
+  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
     integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
@@ -117,5 +119,13 @@
   <script src="dashboard.js"></script>
   <script src="main.js"></script>
 </body>
+
+<footer class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#"></style>Created By Andrew Kwon, Jessica Lieu, Peak Manopchantaroj, Angelina Suy</a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+    data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</footer>
 
 </html>

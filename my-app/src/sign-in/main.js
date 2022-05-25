@@ -1,9 +1,11 @@
+import Moralis from "moralis/types";
+
 const serverUrl = "https://hr43a6esr4uz.usemoralis.com:2053/server";
 const appId = "is22QzmZcFDkWnf2YAOXqLsoSdt62ODzPGeLTUv4";
 Moralis.start({ serverUrl, appId });
 
 let homepage = "http://127.0.0.1:5500/index.html";
-if (Moralis.User.current() == null && window.location.href != homepage) {
+if(Moralis.User.current() == null && window.location.href != homepage){
     document.querySelector('body').style.display = 'none';
     window.location.href = "index.html";
 }
@@ -135,6 +137,7 @@ millisecondsToTime = (ms) => {
     } else return `${days} days(s) ago`;
 };
 
+
 if (document.querySelector("#btn-login") != null) {
     document.querySelector("#btn-login").onclick = login;
 }
@@ -153,6 +156,4 @@ if (document.querySelector("#get-market-link") != null) {
 if (document.querySelector("#get-NFT-link") != null) {
     document.querySelector("#get-NFT-link").onclick = getNFT;
 }
-
-
 

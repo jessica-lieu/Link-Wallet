@@ -8,7 +8,7 @@ if (Moralis.User.current() == null && window.location.href != homepage) {
     window.location.href = "index.html";
 }
 
-login = async ()=>{
+login = async () => {
     await Moralis.authenticate().then(async function (user) {
         console.log('Logged In');
         user.set("name", document.getElementById('user-username').value);
@@ -18,28 +18,59 @@ login = async ()=>{
     })
 }
 
-logout = async ()=>{
+logout = async () => {
     await Moralis.User.logOut();
-        console.log('Logged Out');
-        window.location.href = "index.html";
+    console.log('Logged Out');
+    window.location.href = "index.html";
 }
 
 getBalances = async () => {
-    console.log("get balances clicked")
+    console.log("get balances clicked");
+    const ethBalance = await Moralis.Web3API.account.getNativeBalance();
+    const ropstenBalance = await Moralis.Web3API.account.getNativeBalance({ chain: "ropsten" });
+    const rinkebyBalance = await Moralis.Web3API.account.getNativeBalance({ chain: "rinkeby" });
+    console.log((ethBalance.balance / 1e18).toFixed(5) + " ETH");
+    console.log((ropstenBalance.balance / 1e18).toFixed(5) + " ETH");
+    console.log((rinkebyBalance.balance / 1e18).toFixed(5) + " ETH");
+
+    let content = document.querySelector('#userBalances').innerHTML = `
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Chain</th>
+                <th scope="col">Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Ether</th>
+                <td>${(ethBalance.balance / 1e18).toFixed(5)} ETH</td>
+            </tr>
+            <tr>
+                <th>Ropsten</th>
+                <td>${(ropstenBalance.balance / 1e18).toFixed(5)} ETH</td>
+            </tr>
+            <tr>
+                <th>Rinkeby</th>
+                <td>${(rinkebyBalance.balance / 1e18).toFixed(5)} ETH</td>
+            </tr>
+        </tbody>
+    </table>
+    `;
 }
 
 getTransactions = async () => {
-    console.log("get transactions clicked")
+    console.log("get transactions clicked");
     const options = {
         chain: "rinkeby",
         address: "0xcb47540de6771f9a8fAc460F6362d5591897D3ea",
         order: "desc",
         from_block: "0",
-      };
-      const transactions = await Moralis.Web3API.account.getTransactions(options);
-      console.log(transactions);
+    };
+    const transactions = await Moralis.Web3API.account.getTransactions(options);
+    console.log(transactions);
 
-      if (transactions.total > 0) {
+    if (transactions.total > 0) {
         let table = `
             <table class="table">
             <thead>
@@ -75,11 +106,11 @@ getTransactions = async () => {
 }
 
 getMarket = async () => {
-    console.log("get market clicked")
+    console.log("get market clicked");
 }
 
 getNFT = async () => {
-    console.log("get NFT clicked")
+    console.log("get NFT clicked");
 }
 
 millisecondsToTime = (ms) => {
@@ -99,13 +130,13 @@ millisecondsToTime = (ms) => {
 if (document.querySelector("#btn-login") != null) {
     document.querySelector("#btn-login").onclick = login;
 }
-if(document.querySelector("#btn-logout") != null){
+if (document.querySelector("#btn-logout") != null) {
     document.querySelector("#btn-logout").onclick = logout;
 }
-if(document.querySelector("#get-balances-link") != null){
+if (document.querySelector("#get-balances-link") != null) {
     document.querySelector("#get-balances-link").onclick = getBalances;
 }
-if(document.querySelector("#get-transactions-link") != null){
+if (document.querySelector("#get-transactions-link") != null) {
     document.querySelector("#get-transactions-link").onclick = getTransactions;
 }
 if (document.querySelector("#get-market-link") != null) {

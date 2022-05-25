@@ -1,5 +1,4 @@
-
-const serverUrl = "https://lzit2f0d9oxu.usemoralis.com:2053/server";
+const serverUrl = "https://hr43a6esr4uz.usemoralis.com:2053/server";
 const appId = "lE0k3K7UATt4uJ1bPdIjeg6xtKv6ZtZXqHR7xRGV";
 Moralis.start({ serverUrl, appId });
 /* globals Chart:false, feather:false */
@@ -25,7 +24,7 @@ async function submit() {
   console.log(metadataHash)
   let res = await Moralis.Plugins.rarible.lazyMint({
     chain: 'rinkeby',
-    userAddress: user.get("ethAddress"),
+    userAddress: user.get("0xcb47540de6771f9a8fAc460F6362d5591897D3ea"),
     tokenType: 'ERC721',
     tokenUri: '/ipfs/' + metadataHash,
     supply: 1

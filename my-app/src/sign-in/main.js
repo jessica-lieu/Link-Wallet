@@ -2,19 +2,11 @@ const serverUrl = "https://hr43a6esr4uz.usemoralis.com:2053/server";
 const appId = "is22QzmZcFDkWnf2YAOXqLsoSdt62ODzPGeLTUv4";
 Moralis.start({ serverUrl, appId });
 
-<<<<<<< HEAD
 let homepage = "http://127.0.0.1:5500/index.html";
 if (Moralis.User.current() == null && window.location.href != homepage) {
     document.querySelector('body').style.display = 'none';
     window.location.href = "index.html";
 }
-=======
-// let homepage = "http://127.0.0.1:5500/index.html";
-// if(Moralis.User.current() == null && window.location.href != homepage){
-//     document.querySelector('body').style.display = 'none';
-//     window.location.href = "index.html";
-// }
->>>>>>> 06d1989b26b980d876e6f24c0d5a923904855111
 
 login = async ()=>{
     await Moralis.authenticate().then(async function (user) {
@@ -77,9 +69,50 @@ getTransactions = async () => {
       };
       const transactions = await Moralis.Web3API.account.getTransactions(options);
       console.log(transactions);
+
+      if (transactions.total > 0) {
+        let table = `
+            <table class="table">
+            <thead>
+            <tr>
+            <th scope="col">Transaction</th>
+            <th scope="col">Block Number</th>
+            <th scope="col">Age</th>
+            <th scope="col">Type</th>
+            <th scope="col">Fee</th>
+            <th scope="col">Value</th>
+                </tr>
+            </thead>
+            <tbody id="theTransactions">
+            </tbody>
+            </table>
+            `;
+        document.querySelector("#tableOfTransactions").innerHTML = table;
+
+        transactions.result.forEach(t => {
+            let content = `
+            <tr>
+                <td><a href='https://rinkeby.etherscan.io/tx/${t.hash
+                }' target="_blank" rel="noopener noreferrer">${t.hash}</a></td>
+                <td><a href='https://rinkeby.etherscan.io/block/${t.block_number
+                }' target="_blank" rel="noopener noreferrer">${t.block_number
+                }</a></td>
+                <td>${millisecondsToTime(
+                    Date.parse(new Date()) - Date.parse(t.block_timestamp)
+                )}</td>
+                <td>${t.from_address == Moralis.User.current().get("ethAddress")
+                    ? "Outgoing"
+                    : "Incoming"
+                }</td>
+                <td>${((t.gas * t.gas_price) / 1e18).toFixed(5)} ETH</td>
+                <td>${(t.value / 1e18).toFixed(5)} ETH</td>
+            </tr>
+            `;
+            theTransactions.innerHTML += content;
+        })
+    }
 }
 
-<<<<<<< HEAD
 getMarket = async () => {
     console.log("get market clicked");
 }
@@ -103,10 +136,6 @@ millisecondsToTime = (ms) => {
 };
 
 if (document.querySelector("#btn-login") != null) {
-=======
-
-if(document.querySelector("#btn-login") != null){
->>>>>>> 06d1989b26b980d876e6f24c0d5a923904855111
     document.querySelector("#btn-login").onclick = login;
 }
 if(document.querySelector("#btn-logout") != null){
@@ -118,7 +147,6 @@ if(document.querySelector("#get-balances-link") != null){
 if(document.querySelector("#get-transactions-link") != null){
     document.querySelector("#get-transactions-link").onclick = getTransactions;
 }
-<<<<<<< HEAD
 if (document.querySelector("#get-market-link") != null) {
     document.querySelector("#get-market-link").onclick = getMarket;
 }
@@ -126,10 +154,5 @@ if (document.querySelector("#get-NFT-link") != null) {
     document.querySelector("#get-NFT-link").onclick = getNFT;
 }
 
-=======
-
-//get-market-link
-//get-NFT-link
->>>>>>> 06d1989b26b980d876e6f24c0d5a923904855111
 
 

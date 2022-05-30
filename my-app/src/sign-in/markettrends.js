@@ -1,54 +1,60 @@
-import React, { useState, useEffect} from 'react';
-import axois from 'axios'
-import './App.css';
-import Coin from './coin';
+const serverUrl = "https://bfml6215kdlk.usemoralis.com:2053/server";
+const appId = "N3yXsSbZVqQWHI5KluPKoaq4TLStrl2eorswNHfD";
+Moralis.start({ serverUrl, appId });
+const CONTRACT_ADDRESS = "0x36cd2476c77801816c089619bc98424d7718cfc0";
 
-function App() {
+function fetchNFTMetadata(NFTs){
+    let promises = [];
 
-  const [coins, setCoins] = useState([]);
-  const [search, setSearch] = useState('')
+    for(let i = 0; i < NFTs.length; i++){
 
-  useEffect(() => {
-    axois.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false')
-    .then(res => {
-      setCoins(res.data);
-    }).catch(error=>alert('Error'))
-  }, []);
+            let nft = NFTs[i];
+            let id = nft.token_id;
+            //call moralis cloud function -> static json file
+            promises.push(fetch("https://bfml6215kdlk.usemoralis.com:2053/server/functions/getNFT?_ApplicationId=N3yXsSbZVqQWHI5KluPKoaq4TLStrl2eorswNHfD&nftId=" + id)
+            .then(res => res.json())
+            .then(res => JSON.parse(res.result))
+            .then(res => {nft.metadata = res})
+            .then((res) => {return nft;}))
 
-  const handleChange = e => {
-    setSearch(e.target.value)
-  }
-
-  const filteredCoins = coins.filter(coin =>
-    coin.name.toLowerCase().includes(search.toLowerCase())
-    )
-
-
-  return (
-    <div className="coin-app">
-      <div className="coin-search">
-        <h1 className="coin-text"> Search a currency</h1>
-        <form>
-          <input type="text" placeholder="Search" className="coin-input"
-          onChange={handleChange}/>
-        </form>
-      </div>
-      {filteredCoins.map(coin => {
-        return<Coin 
-          key={coin.id} 
-          name={coin.name} 
-          image={coin.image} 
-          symbol={coin.symbol}
-          marketcap={coin.market_cap}
-          price={coin.current_price}
-          priceChange={coin.price_change_percentage_24h}
-          volume={coin.total_volume}
-          />;
-      })}
-    </div>
-
-  );
+    }
+    return Promise.all(promises);
 }
 
-export default App;
-  
+function renderInventory(NFTs){
+    const parent = document.getElementById("app");
+    for(let i = 0; i < NFTs.length; i++){
+        const nft = NFTs[i];
+        let htmlString = `
+        <div class="card">
+            <img class="card-img-top" src="${nft.metadata.image}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">${nft.metadata.name}</h5>
+                <p class="card-text">${nft.metadata.description}</p>
+                <p class="card-text">Amount in Circulation: ${nft.amount}</p> 
+                <a href="transfer.html?nftId=${nft.token_id}" class="btn btn-primary">Transfer</a>
+            </div>
+      </div>        
+        `
+        let col = document.createElement("div");
+        col.className = "col col-md-4";
+        col.innerHTML = htmlString;
+        parent.appendChild(col);
+    }
+}
+
+async function initializeApp(){
+
+    let currentUser = Moralis.User.current();
+    if (!currentUser){
+        currentUser = await Moralis.authenticate();
+    }
+
+    const options = { address: CONTRACT_ADDRESS, chain: "rinkeby"};
+    let NFTs = await Moralis.Web3API.token.getAllTokenIds(options);
+    let NFTWithMetadata = await fetchNFTMetadata(NFTs.result);
+    console.log(NFTWithMetadata);
+    renderInventory(NFTWithMetadata);
+}
+
+initializeApp();

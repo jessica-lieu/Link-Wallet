@@ -8,15 +8,11 @@ if(Moralis.User.current() == null && window.location.href != homepage){
     window.location.href = "index.html";
 }
 
-login = async ()=>{
-    await Moralis.authenticate().then(async function (user) {
-        console.log('Logged In');
-        user.set("name", document.getElementById('user-username').value);
-        user.set("email", document.getElementById('user-email').value);
-        await user.save();
-        window.location.href = "dashboard.html";
-    })
-}
+login = async () => {
+    await Moralis.Web3.authenticate();{
+      window.location.href = "dashboard.html";
+    };
+};
 
 logout = async ()=>{
     await Moralis.User.logOut();

@@ -1,5 +1,5 @@
 const serverUrl = "https://hr43a6esr4uz.usemoralis.com:2053/server";
-const appId = "lE0k3K7UATt4uJ1bPdIjeg6xtKv6ZtZXqHR7xRGV";
+const appId = "is22QzmZcFDkWnf2YAOXqLsoSdt62ODzPGeLTUv4";
 Moralis.start({ serverUrl, appId });
 Moralis.authenticate();
 
@@ -29,9 +29,9 @@ async function submit() {
     supply: 1
   });
   console.log(res);
-  let token_address = res.data.result.tokenAddress;
+  let token_address = res.data.result.userAddress;
   let token_id = res.data.result.tokenId;
-  let url = `https://rinkeby.rarible.com/token/${token_address}:${token_id}?tab=details`
+  let url = `https://rinkeby.rarible.com/token/${token_Address}:${token_id}?tab=details`
   let lurl = url.toLowerCase();
   document.querySelector("#success_message").innerHTML = `NFT Minted. <a href="${lurl}">View NFT</a>`
 }

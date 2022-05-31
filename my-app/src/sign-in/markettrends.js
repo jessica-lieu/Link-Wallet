@@ -16,7 +16,7 @@ function fetchNFTMetadata(NFTs){
             .then(res => JSON.parse(res.result))
             .then(res => {nft.metadata = res})
             .then((res) => {return nft;}))
-
+1
     }
     return Promise.all(promises);
 }

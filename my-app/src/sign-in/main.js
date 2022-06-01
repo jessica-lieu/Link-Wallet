@@ -2,12 +2,6 @@ const serverUrl = "https://hr43a6esr4uz.usemoralis.com:2053/server";
 const appId = "is22QzmZcFDkWnf2YAOXqLsoSdt62ODzPGeLTUv4";
 Moralis.start({ serverUrl, appId });
 
-let homepage = "http://127.0.0.1:5500/index.html";
-// if(Moralis.User.current() == null && window.location.href != homepage){
-//     document.querySelector('body').style.display = 'none';
-//     window.location.href = "index.html";
-// }
-
 login = async () => {
     await Moralis.Web3.authenticate();{
       window.location.href = "dashboard.html";
@@ -30,7 +24,7 @@ getBalances = async () => {
     console.log((rinkebyBalance.balance / 1e18).toFixed(5) + " ETH");
 
     let content = document.querySelector('#userBalances').innerHTML = `
-    <table class="table">
+    <table style="width: 100%; background-color: #F0EFF4; color: #280C3Cff;", class="table">
         <thead>
             <tr>
                 <th scope="col">Chain</th>
@@ -68,7 +62,7 @@ getTransactions = async () => {
 
       if (transactions.total > 0) {
         let table = `
-            <table class="table">
+            <table style="width: 100%; background-color: #F0EFF4; color: #280C3Cff;", class="table">
             <thead>
             <tr>
             <th scope="col">Transaction</th>
@@ -109,14 +103,6 @@ getTransactions = async () => {
     }
 }
 
-getMarket = async () => {
-    console.log("get market clicked");
-}
-
-getNFT = async () => {
-    console.log("get NFT clicked");
-}
-
 millisecondsToTime = (ms) => {
     let minutes = Math.floor(ms / (1000 * 60));
     let hours = Math.floor(ms / (1000 * 60 * 60));
@@ -143,11 +129,5 @@ if(document.querySelector("#get-balances-link") != null){
 }
 if(document.querySelector("#get-transactions-link") != null){
     document.querySelector("#get-transactions-link").onclick = getTransactions;
-}
-if (document.querySelector("#get-market-link") != null) {
-    document.querySelector("#get-market-link").onclick = getMarket;
-}
-if (document.querySelector("#get-NFT-link") != null) {
-    document.querySelector("#get-NFT-link").onclick = getNFT;
 }
 

@@ -103,14 +103,6 @@ getTransactions = async () => {
     }
 }
 
-getMarket = async () => {
-    console.log("get market clicked");
-}
-
-getNFT = async () => {
-    console.log("get NFT clicked");
-}
-
 millisecondsToTime = (ms) => {
     let minutes = Math.floor(ms / (1000 * 60));
     let hours = Math.floor(ms / (1000 * 60 * 60));
@@ -137,11 +129,5 @@ if(document.querySelector("#get-balances-link") != null){
 }
 if(document.querySelector("#get-transactions-link") != null){
     document.querySelector("#get-transactions-link").onclick = getTransactions;
-}
-if (document.querySelector("#get-market-link") != null) {
-    document.querySelector("#get-market-link").onclick = getMarket;
-}
-if (document.querySelector("#get-NFT-link") != null) {
-    document.querySelector("#get-NFT-link").onclick = getNFT;
 }
 

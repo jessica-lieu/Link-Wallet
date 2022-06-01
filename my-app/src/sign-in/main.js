@@ -2,12 +2,6 @@ const serverUrl = "https://hr43a6esr4uz.usemoralis.com:2053/server";
 const appId = "is22QzmZcFDkWnf2YAOXqLsoSdt62ODzPGeLTUv4";
 Moralis.start({ serverUrl, appId });
 
-let homepage = "http://127.0.0.1:5500/index.html";
-// if(Moralis.User.current() == null && window.location.href != homepage){
-//     document.querySelector('body').style.display = 'none';
-//     window.location.href = "index.html";
-// }
-
 login = async () => {
     await Moralis.Web3.authenticate();{
       window.location.href = "dashboard.html";
@@ -30,7 +24,7 @@ getBalances = async () => {
     console.log((rinkebyBalance.balance / 1e18).toFixed(5) + " ETH");
 
     let content = document.querySelector('#userBalances').innerHTML = `
-    <table class="table">
+    <table style="width: 100%; background-color: #F0EFF4; color: #280C3Cff;", class="table">
         <thead>
             <tr>
                 <th scope="col">Chain</th>

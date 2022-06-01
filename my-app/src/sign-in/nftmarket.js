@@ -29,9 +29,9 @@ async function submit() {
     supply: 1
   });
   console.log(res);
-  let token_address = res.data.result.userAddress;
+  let token_address = res.data.result.tokenAddress;
   let token_id = res.data.result.tokenId;
-  let url = `https://rinkeby.rarible.com/token/${token_Address}:${token_id}?tab=details`
+  let url = `https://rinkeby.rarible.com/token/${token_address}:${token_id}?tab=details`
   let lurl = url.toLowerCase();
   document.querySelector("#success_message").innerHTML = `NFT Minted. <a href="${lurl}">View NFT</a>`
 }

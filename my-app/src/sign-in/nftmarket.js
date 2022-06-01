@@ -23,7 +23,7 @@ async function submit() {
   console.log(metadataHash)
   let res = await Moralis.Plugins.rarible.lazyMint({
     chain: 'rinkeby',
-    userAddress: '0xcb47540de6771f9a8fAc460F6362d5591897D3ea',
+    userAddress: "0xcb47540de6771f9a8fAc460F6362d5591897D3ea",
     tokenType: 'ERC721',
     tokenUri: '/ipfs/' + metadataHash,
     supply: 1
@@ -39,11 +39,3 @@ async function submit() {
 if(document.querySelector("#submit_button") != null){
   document.querySelector("#submit_button").onclick = submit;
 }
-
-/* globals Chart:false, feather:false */
-
-(function () {
-  'use strict'
-
-  feather.replace({ 'aria-hidden': 'true' })
-})()

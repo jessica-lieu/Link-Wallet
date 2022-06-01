@@ -26,15 +26,14 @@ function renderInventory(NFTs){
     for(let i = 0; i < NFTs.length; i++){
         const nft = NFTs[i];
         let htmlString = `
-        <div class="card">
-            <img class="card-img-top" src="${nft.metadata.image}" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">${nft.metadata.name}</h5>
-                <p class="card-text">${nft.metadata.description}</p>
-                <p class="card-text">Amount in Circulation: ${nft.amount}</p> 
-                <a href="transfer.html?nftId=${nft.token_id}" class="btn btn-primary">Transfer</a>
-            </div>
-      </div>        
+        <div class="card"style="background-color: #D8D7DB;">
+            <img class="card-img-top" src="${nft.metadata.image}" alt="Card image cap" width="500" height="250">
+                <div class="card-body"> 
+                    <h5 class="card-title" style="color: #280C3Cff;">${nft.metadata.name}</h5>
+                    <p class="card-text" style="color: #280C3Cff;">${nft.metadata.description}</p>
+                    <p class="card-text" style="color: #280C3Cff;">Amount in Circulation: ${nft.amount}</p> 
+                </div>
+        </div>       
         `
         let col = document.createElement("div");
         col.className = "col col-md-4";
@@ -56,5 +55,13 @@ async function initializeApp(){
     console.log(NFTWithMetadata);
     renderInventory(NFTWithMetadata);
 }
+
+/* globals Chart:false, feather:false */
+
+(function () {
+    'use strict'
+  
+    feather.replace({ 'aria-hidden': 'true' })
+  })()
 
 initializeApp();

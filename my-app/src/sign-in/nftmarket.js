@@ -40,4 +40,10 @@ if(document.querySelector("#submit_button") != null){
   document.querySelector("#submit_button").onclick = submit;
 }
 
+/* globals Chart:false, feather:false */
 
+(function () {
+  'use strict'
+
+  feather.replace({ 'aria-hidden': 'true' })
+})()

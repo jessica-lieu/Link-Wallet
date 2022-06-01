@@ -62,7 +62,7 @@ getTransactions = async () => {
 
       if (transactions.total > 0) {
         let table = `
-            <table class="table">
+            <table style="width: 100%; background-color: #F0EFF4; color: #280C3Cff;", class="table">
             <thead>
             <tr>
             <th scope="col">Transaction</th>

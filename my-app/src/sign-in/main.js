@@ -3,10 +3,10 @@ const appId = "is22QzmZcFDkWnf2YAOXqLsoSdt62ODzPGeLTUv4";
 Moralis.start({ serverUrl, appId });
 
 let homepage = "http://127.0.0.1:5500/index.html";
-if(Moralis.User.current() == null && window.location.href != homepage){
-    document.querySelector('body').style.display = 'none';
-    window.location.href = "index.html";
-}
+// if(Moralis.User.current() == null && window.location.href != homepage){
+//     document.querySelector('body').style.display = 'none';
+//     window.location.href = "index.html";
+// }
 
 login = async () => {
     await Moralis.Web3.authenticate();{

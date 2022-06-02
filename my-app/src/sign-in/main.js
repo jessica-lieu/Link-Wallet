@@ -53,7 +53,7 @@ getTransactions = async () => {
     console.log("get transactions clicked");
     const options = {
         chain: "rinkeby",
-        address: "0xcb47540de6771f9a8fAc460F6362d5591897D3ea",
+        address: Moralis.User.current().get("ethAddress"),
         order: "desc",
         from_block: "0",
       };
